@@ -53,16 +53,18 @@ function App() {
             .value();
     }
 
-    console.log(currentSchool);
-
     return (
     <div className="App">
         <div className="title">{currentCity || 'None'}</div>
         <div className="data-tables">
             <div className='spacer' />
-            <MyTable rows={schools} className='a-table' onRowClick={schoolRowClicked}/>
+            <div className='a-table'>
+                <MyTable rows={schools} onRowClick={schoolRowClicked}/>
+            </div>
             <div className='spacer' />
-            <MyTable rows={yishuvTotal} className='a-table' onRowClick={cityRowClicked}/>
+            <div className='a-table'>
+                <MyTable rows={yishuvTotal} className='a-table' onRowClick={cityRowClicked}/>
+            </div>
             <div className='spacer' />
         </div>
         {currentSchool && <div className="data-map">
