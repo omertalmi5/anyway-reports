@@ -8,9 +8,14 @@ import data from './data/data';
 
 function App() {
     const [currentCity, setCity] = useState(null);
+    const [currentSchool, setSchool] = useState(null);
 
     function cityRowClicked(cityRow) {
         setCity(cityRow.name);
+    }
+
+    function schoolRowClicked(school) {
+        setSchool(school);
     }
 
     let yishuvTotal = _(data)
@@ -34,30 +39,37 @@ function App() {
         schools = _(data)
             .filter(school => school.school_yishuv_name === currentCity)
             .map((school, index) => {
-                return {
+                return _.assign({}, school, {
                     name: school.school_name,
                     num: school.light_injured_count +
                         school.severly_injured_count +
                         school.killed_count +
                         school.rank_in_yishuv +
                         school.total_injured_killed_count,
-                    key: school + index
-                };
+                    key: school + index,
+                });
             })
             .sortBy('name')
             .value();
     }
+
+    console.log(currentSchool);
 
     return (
     <div className="App">
         <div className="title">{currentCity || 'None'}</div>
         <div className="data-tables">
             <div className='spacer' />
-            <MyTable rows={schools} className='a-table' />
+            <MyTable rows={schools} className='a-table' onRowClick={schoolRowClicked}/>
             <div className='spacer' />
             <MyTable rows={yishuvTotal} className='a-table' onRowClick={cityRowClicked}/>
             <div className='spacer' />
         </div>
+        {currentSchool && <div className="data-map">
+            <div className='spacer' />
+            <iframe src={currentSchool.anyway_link} />
+            <div className='spacer' />
+        </div>}
     </div>
     );
 }

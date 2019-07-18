@@ -17,7 +17,17 @@
     }
   }
 
-  .data-charts {
+  .data-map {
+    display: flex;
+
+    iframe {
+      flex: 10;
+      height: 400px;
+    }
+
+    .spacer {
+      flex: 1;
+    }
 
   }
 }
