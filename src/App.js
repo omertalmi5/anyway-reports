@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import _ from 'lodash';
 import './App.scss';
+import CircleChart from './CircleChart';
 import MyTable from './MyTable';
 
 import data from './data/data';
@@ -11,6 +12,7 @@ function App() {
     const [currentSchool, setSchool] = useState(null);
 
     function cityRowClicked(cityRow) {
+        setSchool(null);
         setCity(cityRow.name);
     }
 
@@ -21,11 +23,7 @@ function App() {
     let yishuvTotal = _(data)
         .groupBy('school_yishuv_name')
         .mapValues(schools => _.sumBy(schools, (school) => {
-            return school.light_injured_count +
-                school.severly_injured_count +
-                school.killed_count +
-                school.rank_in_yishuv +
-                school.total_injured_killed_count;
+            return school.total_injured_killed_count;
         }))
         .toPairs()
         .map(item => {
@@ -34,44 +32,66 @@ function App() {
         .sortBy('name')
         .value();
 
-    let schools = [];
-    if (_.isString(currentCity)) {
-        schools = _(data)
+    let schoolRowsForTable = [];
+    let rowsForChartSummary = [];
+    if (currentCity) {
+        schoolRowsForTable = _(data)
             .filter(school => school.school_yishuv_name === currentCity)
-            .map((school, index) => {
-                return _.assign({}, school, {
-                    name: school.school_name,
-                    num: school.light_injured_count +
-                        school.severly_injured_count +
-                        school.killed_count +
-                        school.rank_in_yishuv +
-                        school.total_injured_killed_count,
-                    key: school + index,
-                });
+            .groupBy('school_name')
+            .mapValues(schoolInstances => {
+                return {
+                    sum: _.sumBy(schoolInstances, (schoolInstance) => {
+                        return schoolInstance.total_injured_killed_count;
+                    }),
+                    link: _.head(schoolInstances).anyway_link,
+                };
+            })
+            .toPairs()
+            .map(item => {
+                let [key, value] = item;
+                return {name: key, num: value.sum, key, link: value.link}
             })
             .sortBy('name')
             .value();
     }
 
+    //TODO: Figure out these numbers!!!
+    let lightInjured = _.sumBy(rowsForChartSummary, 'severly_injured_count');
+    let heavyInjured = _.sumBy(rowsForChartSummary, 'light_injured_count');
+    let killed = _.sumBy(rowsForChartSummary, 'killed_count');
+
+
     return (
     <div className="App">
         <div className="title">{currentCity || 'None'}</div>
+        <div className="title">{currentSchool ? currentSchool.school_name  : 'None'}</div>
         <div className="data-tables">
-            <div className='spacer' />
+            <div className="spacer" />
             <div className='a-table'>
-                <MyTable rows={schools} onRowClick={schoolRowClicked}/>
+                <MyTable rows={schoolRowsForTable} onRowClick={schoolRowClicked}/>
             </div>
-            <div className='spacer' />
+            <div className="spacer" />
             <div className='a-table'>
                 <MyTable rows={yishuvTotal} className='a-table' onRowClick={cityRowClicked}/>
             </div>
-            <div className='spacer' />
+            <div className="spacer" />
         </div>
         {currentSchool && <div className="data-map">
-            <div className='spacer' />
-            <iframe src={currentSchool.anyway_link} />
-            <div className='spacer' />
+            <div className="spacer" />
+            <iframe title="map" src={currentSchool.link} />
+            <div className="spacer" />
         </div>}
+        <div className="data-charts">
+            <div className="spacer" />
+            <div className="chart">
+                <CircleChart slices={_.compact([
+                    lightInjured && {name: "פצועים קל", value: lightInjured},
+                    heavyInjured && {name: "פצועים קשה", value: heavyInjured},
+                    killed && {name: "הרוגים", value: killed},
+                ])}/>
+            </div>
+            <div className="spacer" />
+        </div>
     </div>
     );
 }

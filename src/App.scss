@@ -1,36 +1,47 @@
 .App {
   text-align: center;
 
-  .title {
+  > .title {
     font-size: 40px;
   }
 
-  .data-tables {
+  > .data-tables {
     display:flex;
 
-    .a-table {
+    > .a-table {
       flex: 4;
       height: 400px;
       overflow: scroll;
     }
 
-    .spacer {
+    > .spacer {
       flex: 1;
     }
   }
 
-  .data-map {
+  > .data-map {
     display: flex;
 
-    iframe {
+    > iframe {
       flex: 10;
       height: 400px;
     }
 
-    .spacer {
+    > .spacer {
       flex: 1;
     }
+  }
 
+  > .data-charts {
+    display: flex;
+
+    > .chart {
+      flex: 4
+    }
+
+    > .spacer {
+      flex: 1
+    }
   }
 }
 
