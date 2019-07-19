@@ -85,9 +85,9 @@ function App() {
             <div className="spacer" />
             <div className="chart">
                 <CircleChart slices={_.compact([
-                    lightInjured && {name: "פצועים קל", value: lightInjured},
-                    heavyInjured && {name: "פצועים קשה", value: heavyInjured},
-                    killed && {name: "הרוגים", value: killed},
+                    lightInjured && {name: "פצועים קל", value: 100},
+                    heavyInjured && {name: "פצועים קשה", value: 200},
+                    killed && {name: "הרוגים", value: 33},
                 ])}/>
             </div>
             <div className="spacer" />
