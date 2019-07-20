@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import _ from 'lodash';
 import './App.scss';
-import CircleChart from './CircleChart';
-import MyTable from './MyTable';
+import Charts from './Displays/Charts';
+import Map from './Displays/Map';
+import Tables from './Displays/Tables';
 
 import data from './data/data';
 
@@ -11,16 +12,16 @@ function App() {
     const [currentCity, setCity] = useState(null);
     const [currentSchool, setSchool] = useState(null);
 
-    function cityRowClicked(cityRow) {
+    function onCitySelect(cityRow) {
         setSchool(null);
         setCity(cityRow.name);
     }
 
-    function schoolRowClicked(school) {
+    function onSchoolSelect(school) {
         setSchool(school);
     }
 
-    let yishuvTotal = _(data)
+    let cityList = _(data)
         .groupBy('school_yishuv_name')
         .mapValues(schools => _.sumBy(schools, (school) => {
             return school.total_injured_killed_count;
@@ -32,10 +33,9 @@ function App() {
         .sortBy('name')
         .value();
 
-    let schoolRowsForTable = [];
-    let rowsForChartSummary = [];
+    let schoolList = [];
     if (currentCity) {
-        schoolRowsForTable = _(data)
+        schoolList = _(data)
             .filter(school => school.school_yishuv_name === currentCity)
             .groupBy('school_name')
             .mapValues(schoolInstances => {
@@ -55,43 +55,22 @@ function App() {
             .value();
     }
 
-    //TODO: Figure out these numbers!!!
-    let lightInjured = _.sumBy(rowsForChartSummary, 'severly_injured_count');
-    let heavyInjured = _.sumBy(rowsForChartSummary, 'light_injured_count');
-    let killed = _.sumBy(rowsForChartSummary, 'killed_count');
-
-
     return (
     <div className="App">
         <div className="title">{currentCity || 'None'}</div>
-        <div className="title">{currentSchool ? currentSchool.school_name  : 'None'}</div>
-        <div className="data-tables">
-            <div className="spacer" />
-            <div className='a-table'>
-                <MyTable rows={schoolRowsForTable} onRowClick={schoolRowClicked}/>
-            </div>
-            <div className="spacer" />
-            <div className='a-table'>
-                <MyTable rows={yishuvTotal} className='a-table' onRowClick={cityRowClicked}/>
-            </div>
-            <div className="spacer" />
-        </div>
-        {currentSchool && <div className="data-map">
-            <div className="spacer" />
-            <iframe title="map" src={currentSchool.link} />
-            <div className="spacer" />
-        </div>}
-        <div className="data-charts">
-            <div className="spacer" />
-            <div className="chart">
-                <CircleChart slices={_.compact([
-                    lightInjured && {name: "פצועים קל", value: 100},
-                    heavyInjured && {name: "פצועים קשה", value: 200},
-                    killed && {name: "הרוגים", value: 33},
-                ])}/>
-            </div>
-            <div className="spacer" />
-        </div>
+        <div className="title">{currentSchool ? currentSchool.name  : 'None'}</div>
+        <Tables data={data}
+                cityList={cityList}
+                onCitySelect={onCitySelect}
+                schoolList={schoolList}
+                onSchoolSelect={onSchoolSelect}
+                />
+        {currentSchool && <Map link={currentSchool.link}/>}
+        <Charts series={[
+            {name: "פצועים קל", value: 100},
+            {name: "פצועים קשה", value: 200},
+            {name: "הרוגים", value: 33},
+        ]}/>
     </div>
     );
 }
