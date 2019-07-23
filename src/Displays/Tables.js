@@ -1,5 +1,5 @@
 import React from 'react';
-import MyTable from "../MyTable";
+import MyTable from "./MyTable";
 
 function Tables(props) {
 

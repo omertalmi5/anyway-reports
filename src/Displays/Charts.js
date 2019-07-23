@@ -1,5 +1,5 @@
 import React from 'react';
-import CircleChart from "../CircleChart";
+import CircleChart from "./CircleChart";
 import _ from "lodash";
 
 function Charts(props) {
