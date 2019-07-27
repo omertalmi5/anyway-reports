@@ -1,13 +1,12 @@
 import React from 'react';
-import MockTableu from "./Console/MockTableu";
-
-
+import Report from './Console/Report';
+import schools from './data/data';
 
 function App() {
 
     return (
         <div className="App">
-            <MockTableu />
+            <Report schools={schools}/>
         </div>
     );
 }

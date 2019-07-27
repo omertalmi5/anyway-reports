@@ -1,0 +1,29 @@
+.report {
+  margin: 30px 30px 0;
+
+
+  .info {
+    display: flex;
+
+    .right {
+      display: flex;
+      flex-direction: column;
+
+      .input {
+        border: none;
+        outline:none;
+        font-size: 35px;
+      }
+
+      .graph {
+        flex: 1
+      }
+    }
+
+    .left {
+      flex: 1;
+      height: 800px;
+    }
+  }
+
+}
