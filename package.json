@@ -5,12 +5,15 @@
   "homepage": "https://hasadna.github.io/anyway-schools-report",
   "dependencies": {
     "@material-ui/core": "^4.2.0",
+    "autosuggest-highlight": "^3.1.1",
+    "axios": "^0.19.0",
     "gh-pages": "^2.0.1",
     "highcharts": "^7.1.2",
     "highcharts-react-official": "^2.2.2",
     "lodash": "latest",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
+    "react-autosuggest": "^9.4.3",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
   },
