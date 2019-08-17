@@ -5,6 +5,7 @@
   "homepage": "https://hasadna.github.io/anyway-schools-report",
   "dependencies": {
     "@material-ui/core": "^4.2.0",
+    "@material-ui/icons": "^4.2.1",
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.19.0",
     "gh-pages": "^2.0.1",
