@@ -8,6 +8,7 @@ import React from 'react';
 import Map from './Map';
 import Select from './Select';
 import RelativeStats from './RelativeStats';
+import VisionZero from './VisionZero';
 import './Report.scss';
 
 
@@ -33,6 +34,9 @@ function Report(props) {
                 </div>
             </div>
             <div className="signup">
+            </div>
+            <div className="vision-zero-container">
+                <VisionZero />
             </div>
         </div>
     );
