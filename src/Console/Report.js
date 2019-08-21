@@ -5,6 +5,7 @@ import axios from 'axios';
 import Stats from './Stats';
 import Map from './Map';
 import Select from './Select';
+import VisionZero from './VisionZero';
 import './Report.scss';
 import Loader from "./Loader";
 
@@ -49,7 +50,8 @@ function Report(props) {
 
                 </div>
             </div>
-            <div className="signup">
+            <div className="vision-zero-container">
+                <VisionZero />
             </div>
         </div>
     );
