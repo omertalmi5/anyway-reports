@@ -65,7 +65,7 @@ function Select(props) {
     const [inputValue, setInputValue] = React.useState('');
 
     let suggestions = _.map(props.schools, (school) => {
-        return {label: school.school_name, id: school.id};
+        return {label: school.school_name, id: school.school_id};
     });
     const classes = useStyles();
 

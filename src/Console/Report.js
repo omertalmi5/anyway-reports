@@ -2,34 +2,41 @@ import _ from 'lodash';
 import React from 'react';
 // import {useEffect, useRef}  from 'react';
 // import {useState} from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 
-// import Graph from './Graph';
+import Stats from './Stats';
 import Map from './Map';
 import Select from './Select';
-import RelativeStats from './RelativeStats';
 import './Report.scss';
 
 
 function Report(props) {
     const [selectedId, setSelectedId] = React.useState('');
+    const [selectedSchoolData, setSelectedSchoolData] = React.useState({id: ''});
 
-    let selectedSchool = _.find(props.schools, {id: selectedId});
-    let selectedSchoolValue = _.get(selectedSchool, 'school_name', '');
+    let selectedSchool = _.find(props.schools, {school_id: selectedId});
+    let selectedSchoolName = _.get(selectedSchool, 'school_name', '');
 
-    let schoolToShowData = selectedSchool || _.head(props.schools);
-
+    if (selectedId !== selectedSchoolData.id && selectedId !== '') {
+        axios.get(`https://anyway.co.il/api/injured-around-schools?school_id=${selectedId}`)
+            .then(function (response) {
+                setSelectedSchoolData({
+                    stats: response.data,
+                    id: selectedId
+                })
+            })
+    }
     return (
         <div className="report" >
             <div className="info">
                 <div className="right">
                     <Select schools={props.schools}
-                            selectedSchoolValue={selectedSchoolValue}
+                            selectedSchoolValue={selectedSchoolName}
                             setSelectedId={setSelectedId}/>
-                    <RelativeStats school={schoolToShowData}/>
+                    {selectedSchoolData.stats && <Stats school={selectedSchoolData.stats} />}
                 </div>
                 <div className="left">
-                    <Map school={schoolToShowData}/>
+                    <Map school={selectedSchoolData}/>
                 </div>
             </div>
             <div className="signup">
