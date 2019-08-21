@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 
+import './Stats.scss';
+
 import Graph from './Graph';
 
 
@@ -9,7 +11,7 @@ const getFromStatsByYear = (stats, year, severity) => {
     if (_.isUndefined(yearRecord)) {
         return 0;
     }
-    return yearRecord.injured_count;
+    return parseInt(yearRecord.injured_count);
 };
 
 let severityStatsByYear = function (stats, severity, name) {
@@ -30,7 +32,7 @@ const getOptions = (stats) => {
 
     return {
         chart: {
-            type: 'column'
+            type: 'line'
         },
         credits: {
             enabled: false
@@ -38,25 +40,28 @@ const getOptions = (stats) => {
         title: {
             text: ''
         },
+        tooltip: { enabled: false },
         series: [
-            // severityStatsByYear(stats, 1, 'פצועים קל'),
+            severityStatsByYear(stats, 1, 'פצועים קל'),
             severityStatsByYear(stats, 2, 'פצועים קשה'),
             severityStatsByYear(stats, 3, 'הרוגים')
-            // {
-            //     name: 'פצועים קשה', // involved_injury_severity 2
-            //     data: [0, 1, 2]
-            // },
-            // {
-            //     name: 'הרוגים', // involved_injury_severity 3
-            //     data: [0, 1, 3]
-            // },
         ],
         xAxis: {
             categories: ['2013', '2014', '2015', '2016', '2017', '2018'],
         },
         yAxis: {
             title: ''
-        }
+        },
+        plotOptions: {
+            series: {
+                enableMouseTracking: false,
+                states: {
+                    hover: {
+                        enabled: false
+                    }
+                }
+            }
+        },
     };
 };
 
@@ -65,6 +70,7 @@ function Stats(props) {
     let options = getOptions(props.school);
     return (
         <div className="stats">
+            <div className="title">{props.title}</div>
             <Graph options={options}/>
         </div>
     );
