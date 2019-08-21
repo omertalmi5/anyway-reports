@@ -6,6 +6,7 @@ import Stats from './Stats';
 import Map from './Map';
 import Select from './Select';
 import './Report.scss';
+import Loader from "./Loader";
 
 
 function Report(props) {
@@ -41,7 +42,11 @@ function Report(props) {
                     </div>
                 </div>
                 <div className="left">
-                    <Map school={selectedSchoolData}/>
+                    { _.isNil(selectedSchool)
+                        ? <Loader />
+                        : <Map school={selectedSchool}/>
+                    }
+
                 </div>
             </div>
             <div className="signup">

@@ -12,6 +12,7 @@ function getLink(school) {
 
 
 function Map(props) {
+    console.log(props.school);
     let url = getLink(props.school);
     // let url = _.get(props.school, ['config', 'url'], DEFAULT_LINK);
     return (
