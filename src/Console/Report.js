@@ -18,7 +18,6 @@ function Report(props) {
     if (selectedId !== selectedSchoolData.id && selectedId !== '') {
         axios.get(`https://anyway.co.il/api/injured-around-schools?school_id=${selectedId}`)
             .then(function (response) {
-                console.log(response);
                 setSelectedSchoolData({
                     stats: response.data,
                     id: selectedId

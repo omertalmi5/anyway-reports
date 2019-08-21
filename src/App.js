@@ -1,13 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import _ from 'lodash';
 
+import Loader from './Console/Loader';
 import Report from './Console/Report';
-import schoolsRawData from './data/schools';
+import axios from "axios";
 
 function App() {
+    const [schoolsMetaData, setSchoolsMetaData] = useState(null);
+
+    useEffect(() => {
+        axios.get('https://anyway.co.il/api/schools-names')
+            .then(function (response) {
+                setSchoolsMetaData(response.data)
+            })
+    });
+
 
     return (
         <div className="App">
-            <Report schools={schoolsRawData} />
+            { _.isNull(schoolsMetaData)
+                ? <Loader />
+                : <Report schools={schoolsMetaData} />
+            }
         </div>
     );
 }
