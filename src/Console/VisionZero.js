@@ -17,8 +17,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
-      style={{width: '100%'}}
-      align='center'
+      style={{ width: '100%'}}
     >
       <Box p={3}>{children}</Box>
     </Typography>
@@ -48,8 +47,11 @@ class VisionZero extends React.Component {
     const {currentTab} = this.state;
     return VISION_ZERO_CONTENT.map((content, index) => {
       return <TabPanel value={currentTab} index={index}>
-      {content.image ? <img src={`images/${content.image}`} width='350px' alt={content.alt}/> : null}
-      <br/>{content.body}</TabPanel>
+        <div>
+      {content.image ? <img src={`images/${content.image}`} height='250px' alt={content.alt} style={{float:'right', paddingLeft:'10px'}}/> : null}
+      <span>{content.body}</span>
+      </div>
+      </TabPanel>
     })
   }
 
