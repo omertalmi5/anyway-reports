@@ -1,29 +1,24 @@
 import React from 'react';
-import styledComponent from 'styled-components'
 import {VISION_ZERO_CONTENT} from '../constants/visionZero'
 import { styled } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import styles from './VisionZero.module.css';
-import { flexbox } from '@material-ui/system';
 
 function TabPanel(props) {
   const { children, value, index} = props;
 
   return (
     <Typography
-      component="p"
+      component="div"
       role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
-      
+      style={{width: '100%'}}
+      align='center'
     >
       <Box p={3}>{children}</Box>
     </Typography>
@@ -52,7 +47,9 @@ class VisionZero extends React.Component {
   createTabContent(){
     const {currentTab} = this.state;
     return VISION_ZERO_CONTENT.map((content, index) => {
-      return <TabPanel value={currentTab} index={index}>{content.body}</TabPanel>
+      return <TabPanel value={currentTab} index={index}>
+      {content.image ? <img src={`images/${content.image}`} width='350px' alt={content.alt}/> : null}
+      <br/>{content.body}</TabPanel>
     })
   }
 
