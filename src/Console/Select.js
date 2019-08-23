@@ -108,7 +108,7 @@ function Select(props) {
         return inputLength === 0
             ? []
             : _(suggestions).filter(suggestion => {
-                const keep = count < 5 && suggestion.label.includes(inputValue);
+                const keep = count < 15 && suggestion.label.includes(inputValue);
 
                 if (keep) {
                     count += 1;
