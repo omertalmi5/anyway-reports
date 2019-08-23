@@ -1,26 +1,15 @@
 {
   "files": {
-    "main.css": "/anyway-schools-report/static/css/main.a77b9583.chunk.css",
-    "main.js": "/anyway-schools-report/static/js/main.9fa920d5.chunk.js",
-    "main.js.map": "/anyway-schools-report/static/js/main.9fa920d5.chunk.js.map",
+    "main.css": "/anyway-schools-report/static/css/main.47deb4bf.chunk.css",
+    "main.js": "/anyway-schools-report/static/js/main.f150f74b.chunk.js",
+    "main.js.map": "/anyway-schools-report/static/js/main.f150f74b.chunk.js.map",
     "runtime~main.js": "/anyway-schools-report/static/js/runtime~main.c5ff331e.js",
     "runtime~main.js.map": "/anyway-schools-report/static/js/runtime~main.c5ff331e.js.map",
-    "static/js/2.703568cf.chunk.js": "/anyway-schools-report/static/js/2.703568cf.chunk.js",
-    "static/js/2.703568cf.chunk.js.map": "/anyway-schools-report/static/js/2.703568cf.chunk.js.map",
+    "static/js/2.d1393d06.chunk.js": "/anyway-schools-report/static/js/2.d1393d06.chunk.js",
+    "static/js/2.d1393d06.chunk.js.map": "/anyway-schools-report/static/js/2.d1393d06.chunk.js.map",
     "index.html": "/anyway-schools-report/index.html",
-    "precache-manifest.f9acb7f189d299655a0f4259f05dee95.js": "/anyway-schools-report/precache-manifest.f9acb7f189d299655a0f4259f05dee95.js",
+    "precache-manifest.1fd71820ff6a81cb57a8c043d490856a.js": "/anyway-schools-report/precache-manifest.1fd71820ff6a81cb57a8c043d490856a.js",
     "service-worker.js": "/anyway-schools-report/service-worker.js",
-    "static/css/main.a77b9583.chunk.css.map": "/anyway-schools-report/static/css/main.a77b9583.chunk.css.map",
-    "static/media/bicycle.jpg": "/anyway-schools-report/static/media/bicycle.93f10004.jpg",
-    "static/media/bicycle2.jpg": "/anyway-schools-report/static/media/bicycle2.66e783a5.jpg",
-    "static/media/bicycle3.jpg": "/anyway-schools-report/static/media/bicycle3.e69b7fdc.jpg",
-    "static/media/safeRoad1.png": "/anyway-schools-report/static/media/safeRoad1.136ab9d1.png",
-    "static/media/safeRoad2.png": "/anyway-schools-report/static/media/safeRoad2.f44a1bd4.png",
-    "static/media/sidewalk.jpg": "/anyway-schools-report/static/media/sidewalk.11796f88.jpg",
-    "static/media/sidewalk2.jpg": "/anyway-schools-report/static/media/sidewalk2.5dc1b083.jpg",
-    "static/media/sidewalk3.png": "/anyway-schools-report/static/media/sidewalk3.369c4f94.png",
-    "static/media/sidewalk4.png": "/anyway-schools-report/static/media/sidewalk4.03e4022c.png",
-    "static/media/sidewalk5.jpg": "/anyway-schools-report/static/media/sidewalk5.9c1c66f6.jpg",
-    "static/media/visionZero.png": "/anyway-schools-report/static/media/visionZero.2528c3c1.png"
+    "static/css/main.47deb4bf.chunk.css.map": "/anyway-schools-report/static/css/main.47deb4bf.chunk.css.map"
   }
 }
