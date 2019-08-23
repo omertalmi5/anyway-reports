@@ -11,7 +11,6 @@ function getLink(school) {
 
 
 function Map(props) {
-    console.log(props.school);
     let url = getLink(props.school);
     return (
         <div className="map">

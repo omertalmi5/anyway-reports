@@ -65,7 +65,18 @@ function Select(props) {
     const [inputValue, setInputValue] = React.useState('');
 
     let suggestions = _.map(props.schools, (school) => {
-        return {label: school.school_name, id: school.school_id};
+        let yishuvName = school.yishuv_name.startsWith('"')
+            ? school.yishuv_name.substr(1, school.yishuv_name.length)
+            : school.yishuv_name;
+        yishuvName = school.yishuv_name.endsWith('"')
+            ? yishuvName.substr(0, yishuvName-1)
+            : yishuvName;
+        return {
+            label: _.size(yishuvName)
+                ? `${school.school_name} (${yishuvName})`
+                : school.school_name,
+            id: school.school_id
+        };
     });
     const classes = useStyles();
 

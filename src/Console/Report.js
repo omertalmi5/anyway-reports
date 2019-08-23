@@ -27,7 +27,6 @@ function Report(props) {
             })
     }
 
-
     return (
         <div className="report" >
             <div className="info">
