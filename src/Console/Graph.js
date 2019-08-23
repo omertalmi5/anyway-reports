@@ -1,5 +1,4 @@
 import React from 'react';
-import './Graph.scss';
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
