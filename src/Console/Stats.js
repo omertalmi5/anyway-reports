@@ -38,6 +38,7 @@ const getLineOptions = (stats) => {
 
     return {
         chart: {
+            height: 250,
             type: 'line'
         },
         credits: {
@@ -86,6 +87,7 @@ const getColumnOptions = (stats) => {
 
     return {
         chart: {
+            height: 250,
             type: 'column'
         },
         credits: {
@@ -116,10 +118,67 @@ const getColumnOptions = (stats) => {
     };
 };
 
+const getPieOptions = (stats) => {
+
+    let series = [{
+        colorByPoint: true,
+        data: [{
+            name: 'גברים',
+            y: 61.41,
+        }, {
+            name: 'נשים',
+            y: 11.84
+        }],
+        dataLabels: {
+            connectorWidth: 0,
+            connectorPadding: -10,
+            formatter: function () {
+                return `${this.point.y}%`;
+            },
+            distance: 15,
+            style: {
+                fontSize: '12px',
+                fontWeight: 'normal'
+            },
+        }
+    }];
+
+    return {
+        chart: {
+            height: 250,
+            type: 'pie'
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: ''
+        },
+        tooltip: { enabled: false },
+        series,
+        plotOptions: {
+            series: {
+                enableMouseTracking: false,
+                states: {
+                    hover: {
+                        enabled: false
+                    }
+                }
+            },
+            pie: {
+                borderWidth: 0,
+                borderColor: null,
+                showInLegend: true
+            }
+        },
+    };
+};
+
 
 function Stats(props) {
     let lineOptions = getLineOptions(props.school);
     let columnOptions = getColumnOptions(props.school);
+    let pieOptions = getPieOptions(props.school);
     return (
         <div className="stats">
             <div className="title">{props.title}</div>
@@ -127,6 +186,8 @@ function Stats(props) {
             <Graph options={lineOptions}/>
             <div className="sub-title">נפגעים לפי חודש</div>
             <Graph options={columnOptions}/>
+            <div className="sub-title">נפגעים לפי מין</div>
+            <Graph options={pieOptions}/>
         </div>
     );
 }
