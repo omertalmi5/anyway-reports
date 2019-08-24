@@ -14,7 +14,7 @@ function Map(props) {
     let url = getLink(props.school);
     return (
         <div className="map">
-            <div className="title">{''}</div>
+            <div className="title">תאונות סביב בית הספר</div>
             <iframe src={url} title={"the map"}/>
         </div>
     );

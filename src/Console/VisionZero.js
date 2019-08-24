@@ -1,11 +1,13 @@
 import React from 'react';
-import {VISION_ZERO_CONTENT} from '../constants/visionZero'
 import { styled } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
+import './VisionZero.scss';
+
+import {VISION_ZERO_CONTENT} from '../constants/visionZero'
 
 function TabPanel(props) {
   const { children, value, index} = props;
@@ -59,19 +61,22 @@ class VisionZero extends React.Component {
     this.setState({currentTab: index});
   }
 
-  render() {    
+  render() {
     return (
-      <div style={{display: 'flex', flex: '1 auto'}}>
-        <MyTabs
-        orientation="vertical"
-        variant="scrollable"
-        value={this.state.currentTab}
-        onChange={this.handleChange.bind(this)}
-        aria-label="Vertical tabs example"
-        >
-          {this.createTabHeaders()}
-        </MyTabs>
-      {this.createTabContent()}
+      <div className="vision-zero">
+        <div className="title">דרכים לשיפור הבטיחות בדרכים על פי חזון אפס /דרור רשף</div>
+        <div style={{display: 'flex', flex: '1 auto'}}>
+          <MyTabs
+          orientation="vertical"
+          variant="scrollable"
+          value={this.state.currentTab}
+          onChange={this.handleChange.bind(this)}
+          aria-label="Vertical tabs example"
+          >
+            {this.createTabHeaders()}
+          </MyTabs>
+        {this.createTabContent()}
+        </div>
       </div>
     )
   }
