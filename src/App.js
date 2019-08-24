@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import _ from 'lodash';
 
+import './App.scss';
+
 import Loader from './Console/Loader';
 import Report from './Console/Report';
 import axios from "axios";

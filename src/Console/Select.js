@@ -2,6 +2,8 @@ import React from 'react';
 import _ from 'lodash';
 import deburr from 'lodash/deburr';
 
+import './Select.scss';
+
 import match from 'autosuggest-highlight/match';
 import Autosuggest from 'react-autosuggest';
 import TextField from '@material-ui/core/TextField';
@@ -14,7 +16,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 const useStyles = makeStyles(theme => ({
     root: {
         height: 250,
-        flexGrow: 1,
+        flexGrow: 1
     },
     container: {
         position: 'relative',
@@ -28,6 +30,7 @@ const useStyles = makeStyles(theme => ({
     },
     suggestion: {
         display: 'block',
+        fontFamily: '\'Alef\',\'sans-serif\''
     },
     suggestionsList: {
         margin: 0,
