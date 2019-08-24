@@ -155,7 +155,7 @@ function Select(props) {
             inputProps={{
                 classes,
                 id: 'react-autosuggest-simple',
-                placeholder: 'הקלד כאן מוסד לימודים הקרוב לביתך...',
+                placeholder: 'חפש על פי שם ישוב או שם ביה״ס',
                 value: inputValue,
                 onChange: handleChange,
                 direction: 'rtl'
