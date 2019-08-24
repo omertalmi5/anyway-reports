@@ -37,7 +37,6 @@ const getLineOptions = (stats) => {
         severityStatsByYear(stats, 'severly_injured_count', 'פצועים קשה', '#ff9f1c'),
         severityStatsByYear(stats, 'killed_count', 'הרוגים', '#d81c32')
     ];
-    console.log(stats);
 
     return {
         chart: {
@@ -72,24 +71,20 @@ const getLineOptions = (stats) => {
     };
 };
 
+const HEBREW_MONTHS = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
+
 const getColumnOptions = (stats) => {
-
     let series = [{
-        name: 'פצועים קל',
-        data: [1, 2, 3, 4, 1, 1, 6, 4, 1, 0, 0, 2],
-        color: '#ffd82b',
-
-    }, {
-        name: 'פצועים קשה',
-        data: [2, 2, 1, 1, 1, 1, 6, 4, 1, 3, 3, 2],
-        color: '#ff9f1c',
-
-    }, {
-        name: 'הרוגים',
-        data: [1, 2, 3, 4, 3, 1, 1, 2, 5, 2, 0, 2],
-        color: '#d81c32',
-
+        name: 'נפגעים',
+        data: _.reduce(HEBREW_MONTHS, function(res, value) {
+                let current = _.find(stats, {accident_month_hebrew: value}) || {count_1: 0};
+                res.push(current.count_1);
+                return res;
+            },
+            []),
+       color: '#d81c32'
     }];
+
 
     return {
         chart: {
@@ -105,7 +100,7 @@ const getColumnOptions = (stats) => {
         tooltip: { enabled: false },
         series,
         xAxis: {
-            categories: ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'],
+            categories: HEBREW_MONTHS,
         },
         yAxis: {
             title: '',
@@ -126,15 +121,15 @@ const getColumnOptions = (stats) => {
 
 const getPieOptions = (stats) => {
 
+    let total = _.sumBy(stats, 'count_1');
     let series = [{
         colorByPoint: true,
-        data: [{
-            name: 'גברים',
-            y: 61.41,
-        }, {
-            name: 'נשים',
-            y: 11.84
-        }],
+        data: _.map(stats, (stat) => {
+            return {
+                name: stat.sex_hebrew,
+                y: Math.trunc(((stat.count_1 / total) * 10000) / 100)
+            }
+        }),
         dataLabels: {
             connectorWidth: 0,
             connectorPadding: -10,
@@ -182,18 +177,24 @@ const getPieOptions = (stats) => {
 
 
 function Stats(props) {
-    let lineOptions = getLineOptions(props.school);
-    let columnOptions = getColumnOptions(props.school);
-    let pieOptions = getPieOptions(props.school);
+    let lineOptions = getLineOptions(props.injuredStats);
+    let columnOptions = getColumnOptions(props.monthStats);
+    let pieOptions = getPieOptions(props.genderedStats);
     return (
         <div className="stats">
-            <div className="title">{props.title}</div>
-            <div className="sub-title">נפגעים לפי שנה</div>
-            <Graph options={lineOptions}/>
-            <div className="sub-title">נפגעים לפי חודש</div>
-            <Graph options={columnOptions}/>
-            <div className="sub-title">נפגעים לפי מין</div>
-            <Graph options={pieOptions}/>
+            <div className="title">{props.title || ''}</div>
+            {props.injuredStats && <>
+                <div className="sub-title">נפגעים לפי שנה</div>
+                <Graph options={lineOptions}/>
+            </>}
+            {props.monthStats && <>
+                <div className="sub-title">נפגעים לפי חודש</div>
+                <Graph options={columnOptions}/>
+            </>}
+            {props.injuredStats && <>
+                <div className="sub-title">נפגעים לפי מין</div>
+                <Graph options={pieOptions}/>
+            </>}
         </div>
     );
 }

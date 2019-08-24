@@ -12,19 +12,34 @@ import Loader from "./Loader";
 
 function Report(props) {
     const [selectedId, setSelectedId] = React.useState('');
-    const [selectedSchoolData, setSelectedSchoolData] = React.useState({id: ''});
+    const [selectedSchoolInjuredData, setSelectedSchoolInjuredData] = React.useState({id: '', stats: null});
+    const [selectedSchoolMonthData, setSelectedSchoolMonthData] = React.useState({stats: null});
+    const [selectedSchoolGenderData, setSelectedSchoolGenderData] = React.useState({stats: null});
 
     let selectedSchool = _.find(props.schools, {school_id: selectedId});
     let selectedSchoolName = _.get(selectedSchool, 'school_name', '');
 
-    if (selectedId !== selectedSchoolData.id && selectedId !== '') {
+    if (selectedId !== selectedSchoolInjuredData.id && selectedId !== '') {
+        console.log(selectedId, selectedSchoolInjuredData.id);
         axios.get(`https://anyway.co.il/api/injured-around-schools?school_id=${selectedId}`)
             .then(function (response) {
-                setSelectedSchoolData({
+                setSelectedSchoolInjuredData({
                     stats: response.data,
                     id: selectedId
                 })
-            })
+            });
+        axios.get(`https://anyway.co.il/api/injured-around-schools-months-graphs-data?school_id=${selectedId}`)
+            .then(function (response) {
+                setSelectedSchoolMonthData({
+                    stats: response.data
+                });
+            });
+        axios.get(`https://anyway.co.il/api/injured-around-schools-sex-graphs-data?school_id=${selectedId}`)
+            .then(function (response) {
+                setSelectedSchoolGenderData({
+                    stats: response.data
+                });
+            });
     }
 
     return (
@@ -37,8 +52,10 @@ function Report(props) {
                             setSelectedId={setSelectedId}/>
                     </div>
                     <div className="stats-container">
-                        {selectedSchoolData.stats && <Stats school={selectedSchoolData.stats}
-                                                            title={_.get(selectedSchool, 'school_name')}/>}
+                        {<Stats injuredStats={selectedSchoolInjuredData.stats}
+                                monthStats={selectedSchoolMonthData.stats}
+                                genderedStats={selectedSchoolGenderData.stats}
+                                title={_.get(selectedSchool, 'school_name')}/>}
                     </div>
                 </div>
                 <div className="left">
@@ -54,7 +71,7 @@ function Report(props) {
             </div>
             <div className="footer">
                 <div>הדו״ח מתבסס על נתוני הלשכה המרכזית לסטטיסטיקה. בדו״ח נספרו עבור כל בית ספר כל  הפצועים/ההרוגים הולכי הרגל בגילאים 0-19 בתאונות שעיגונן מדויק ובתוך ריבוע שמרכזו בית הספר וגודל כל צלע ק"מ אחד, בין השנים 2013-2017.</div>
-                <div>את הדו"ח הפיקו: עתליה אלון, גל רייך, גל פולק, אייל גלזר ואגם רפאלי-פרהדיאן</div>
+                <div>את הדו"ח הפיקו דרור רשף, אגם רפאלי-פרהדיאן, דן פולק, אבי קליימן, גל רייך ועתליה אלון.</div>
             </div>
         </div>
     );
