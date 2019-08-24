@@ -7,16 +7,17 @@ import Graph from './Graph';
 
 
 const getFromStatsByYear = (stats, year, severity) => {
-    let yearRecord = _.find(stats, {accident_year: year, involved_injury_severity: severity.toString()});
+    let yearRecord = _.find(stats, {accident_year: year});
     if (_.isUndefined(yearRecord)) {
         return 0;
     }
-    return parseInt(yearRecord.injured_count);
+    return parseInt(yearRecord[severity] || 0);
 };
 
-let severityStatsByYear = function (stats, severity, name) {
+let severityStatsByYear = function (stats, severity, name, color) {
     return {
         name,
+        color,
         data: [
             getFromStatsByYear(stats, '2013', severity),
             getFromStatsByYear(stats, '2014', severity),
@@ -24,17 +25,19 @@ let severityStatsByYear = function (stats, severity, name) {
             getFromStatsByYear(stats, '2016', severity),
             getFromStatsByYear(stats, '2017', severity),
             getFromStatsByYear(stats, '2018', severity)
-        ]
+        ],
+        key: `${name}-${severity}`
     };
 };
 
 const getLineOptions = (stats) => {
 
     let series = [
-        severityStatsByYear(stats, 1, 'פצועים קל'),
-        severityStatsByYear(stats, 2, 'פצועים קשה'),
-        severityStatsByYear(stats, 3, 'הרוגים')
+        severityStatsByYear(stats, 'light_injured_count', 'פצועים קל', '#ffd82b'),
+        severityStatsByYear(stats, 'severly_injured_count', 'פצועים קשה', '#ff9f1c'),
+        severityStatsByYear(stats, 'killed_count', 'הרוגים', '#d81c32')
     ];
+    console.log(stats);
 
     return {
         chart: {
