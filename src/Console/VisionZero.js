@@ -41,14 +41,14 @@ class VisionZero extends React.Component {
 
   createTabHeaders(){
     return VISION_ZERO_CONTENT.map((content, index) => {
-      return <Tab label={content.header} id={`vertical-tab-${index}`} aria-controls={`vertical-tabpanel-${index}`}></Tab>
+      return <Tab key={index} label={content.header} id={`vertical-tab-${index}`} aria-controls={`vertical-tabpanel-${index}`}></Tab>
     })
   }
 
   createTabContent(){
     const {currentTab} = this.state;
     return VISION_ZERO_CONTENT.map((content, index) => {
-      return <TabPanel value={currentTab} index={index}>
+      return <TabPanel key={index} value={currentTab} index={index}>
         <div>
       {content.image ? <img src={`images/${content.image}`} height='250px' alt={content.alt} style={{float:'right', paddingLeft:'10px'}}/> : null}
       <span>{content.body}</span>
