@@ -20,7 +20,6 @@ function Report(props) {
     let selectedSchoolName = _.get(selectedSchool, 'school_name', '');
 
     if (selectedId !== selectedSchoolInjuredData.id && selectedId !== '') {
-        console.log(selectedId, selectedSchoolInjuredData.id);
         axios.get(`https://anyway.co.il/api/injured-around-schools?school_id=${selectedId}`)
             .then(function (response) {
                 setSelectedSchoolInjuredData({
@@ -70,7 +69,7 @@ function Report(props) {
                 <VisionZero />
             </div>
             <div className="footer">
-                <div>הדו״ח מתבסס על נתוני הלשכה המרכזית לסטטיסטיקה. בדו״ח נספרו עבור כל בית ספר כל  הפצועים/ההרוגים הולכי הרגל בגילאים 0-19 בתאונות שעיגונן מדויק ובתוך ריבוע שמרכזו בית הספר וגודל כל צלע ק"מ אחד, בין השנים 2013-2017.</div>
+                <div>הדו״ח מתבסס על נתוני הלשכה המרכזית לסטטיסטיקה. בדו״ח נספרו עבור כל בית ספר כל  הפצועים/ההרוגים הולכי הרגל בגילאים 0-19 בתאונות שעיגונן מדויק ובתוך ריבוע שמרכזו בית הספר וגודל כל צלע ק"מ אחד, בין השנים 2014-2018.</div>
                 <div>את הדו"ח הפיקו דרור רשף, אגם רפאלי-פרהדיאן, דן פולק, אבי קליימן, גל רייך ועתליה אלון.</div>
             </div>
         </div>

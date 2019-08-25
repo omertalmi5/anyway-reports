@@ -19,7 +19,6 @@ let severityStatsByYear = function (stats, severity, name, color) {
         name,
         color,
         data: [
-            getFromStatsByYear(stats, '2013', severity),
             getFromStatsByYear(stats, '2014', severity),
             getFromStatsByYear(stats, '2015', severity),
             getFromStatsByYear(stats, '2016', severity),
@@ -52,7 +51,7 @@ const getLineOptions = (stats) => {
         tooltip: { enabled: false },
         series,
         xAxis: {
-            categories: ['2013', '2014', '2015', '2016', '2017', '2018'],
+            categories: ['2014', '2015', '2016', '2017', '2018'],
         },
         yAxis: {
             title: '',

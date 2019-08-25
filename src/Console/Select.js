@@ -103,6 +103,18 @@ function Select(props) {
         );
     }
 
+    function validSuggestion(suggestion, inputValue) {
+        let label = suggestion.label;
+        if (label.includes(inputValue)) {
+            return true;
+        }
+
+        let parts = inputValue.split(' ');
+        let partsSize = _.size(parts);
+        let valueInputParts = _(parts).map(part => label.includes(part)).filter(partBool => partBool).size();
+        return partsSize === valueInputParts
+    }
+
     function getSuggestions(value) {
         const inputValue = deburr(value.trim()).toLowerCase();
         const inputLength = inputValue.length;
@@ -111,7 +123,7 @@ function Select(props) {
         return inputLength === 0
             ? []
             : _(suggestions).filter(suggestion => {
-                const keep = count < 15 && suggestion.label.includes(inputValue);
+                const keep = count < 15 && validSuggestion(suggestion, inputValue);
 
                 if (keep) {
                     count += 1;
