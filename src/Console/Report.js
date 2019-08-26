@@ -11,7 +11,7 @@ import Loader from "./Loader";
 
 
 function Report(props) {
-    const [selectedId, setSelectedId] = React.useState('');
+    const [selectedId, setSelectedId] = React.useState('562');
     const [selectedSchoolInjuredData, setSelectedSchoolInjuredData] = React.useState({id: '', stats: null});
     const [selectedSchoolMonthData, setSelectedSchoolMonthData] = React.useState({stats: null});
     const [selectedSchoolGenderData, setSelectedSchoolGenderData] = React.useState({stats: null});
@@ -60,7 +60,7 @@ function Report(props) {
                 <div className="left">
                     { _.isNil(selectedSchool)
                         ? <Loader />
-                        : <Map school={selectedSchool}/>
+                        : <Map school={selectedSchool} schoolId={selectedId}/>
                     }
 
                 </div>

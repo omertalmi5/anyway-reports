@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import './Map.scss';
+import axios from "axios";
 
 function getLink(school) {
     let lat = school.latitude;
@@ -12,6 +13,9 @@ function getLink(school) {
 
 function Map(props) {
     let url = getLink(props.school);
+
+
+
     return (
         <div className="map">
             <div className="title">תאונות סביב בית הספר</div>

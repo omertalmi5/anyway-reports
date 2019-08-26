@@ -120,7 +120,7 @@ function Select(props) {
         const inputLength = inputValue.length;
         let count = 0;
 
-        return inputLength === 0
+        let filtered = inputLength === 0
             ? []
             : _(suggestions).filter(suggestion => {
                 const keep = count < 15 && validSuggestion(suggestion, inputValue);
@@ -133,6 +133,8 @@ function Select(props) {
             })
                 .uniqBy('id')
                 .value();
+
+        return _.uniqBy(filtered, 'label');
     }
 
     const handleSuggestionsFetchRequested = ({ value }) => {
