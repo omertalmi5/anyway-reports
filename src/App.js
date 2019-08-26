@@ -54,7 +54,7 @@ function App() {
           className={classes.appBar}
         >
           <Toolbar variant="dense">            
-            <img src="/anyway.png" alt="Anyway" className={classes.logo} />
+            <img src="images/anyway.png" alt="Anyway" className={classes.logo} />
           </Toolbar>
         </AppBar>
             { _.isNull(schoolsMetaData)
@@ -68,7 +68,7 @@ function App() {
           <Toolbar variant="dense"> 
             <div className='anyway-footer'>
                 <a href="http://www.hasadna.org.il/" title="לדעת להשפיע - מבית הסדנא לידע ציבורי">
-                    <img className='hasadna-logo' src="/hasadna.png" alt="לוגו של הסדנה" />
+                    <img className='hasadna-logo' src="images/hasadna.png" alt="לוגו של הסדנה" />
                 </a>
                 <a className='hasadna-links' href="https://www.jgive.com/new/he/ils/donation-targets/3268"
                 target="new">תרמו לנו</a>
