@@ -8,19 +8,19 @@ import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 
-const useStyles = makeStyles(theme => ({    
+const useStyles = makeStyles(theme => ({
     appBar: {
       transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen
       }),
       backgroundColor: "#f9f9f9",
-    },   
+    },
     bottomBar: {
       top: "auto",
       bottom: 0,
       backgroundColor: "#f9f9f9",
-    }, 
+    },
     title: {
       flexGrow: 1
     },
@@ -53,7 +53,7 @@ function App() {
           position="fixed"
           className={classes.appBar}
         >
-          <Toolbar variant="dense">            
+          <Toolbar variant="dense">
             <img src="images/anyway.png" alt="Anyway" className={classes.logo} />
           </Toolbar>
         </AppBar>
@@ -61,11 +61,11 @@ function App() {
                 ? <Loader />
                 : <Report schools={schoolsMetaData} />
             }
-         {/* <AppBar
+         <AppBar
           position="fixed"
           className={classes.bottomBar}
         >
-          <Toolbar variant="dense"> 
+          <Toolbar variant="dense">
             <div className='anyway-footer'>
                 <a href="http://www.hasadna.org.il/" title="לדעת להשפיע - מבית הסדנא לידע ציבורי">
                     <img className='hasadna-logo' src="images/hasadna.png" alt="לוגו של הסדנה" />
@@ -73,9 +73,9 @@ function App() {
                 <a className='hasadna-links' href="https://www.jgive.com/new/he/ils/donation-targets/3268"
                 target="new">תרמו לנו</a>
                 <a className='hasadna-links' href="mailto:feedback@anyway.co.il?subject=ANYWAY%20Feedback" target="new">צרו קשר</a>
-            </div>           
+            </div>
           </Toolbar>
-        </AppBar>    */}
+        </AppBar>
         </div>
     );
 }
