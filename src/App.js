@@ -61,7 +61,7 @@ function App() {
                 ? <Loader />
                 : <Report schools={schoolsMetaData} />
             }
-         <AppBar
+         {/* <AppBar
           position="fixed"
           className={classes.bottomBar}
         >
@@ -75,7 +75,7 @@ function App() {
                 <a className='hasadna-links' href="mailto:feedback@anyway.co.il?subject=ANYWAY%20Feedback" target="new">צרו קשר</a>
             </div>           
           </Toolbar>
-        </AppBar>   
+        </AppBar>    */}
         </div>
     );
 }
