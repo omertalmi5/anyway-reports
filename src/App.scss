@@ -10,3 +10,24 @@ body {
 .MuiTypography-root.MuiTypography-body1 {
   font-family:'Alef','sans-serif';
 }
+
+.anyway-footer {
+  display: flex;
+  cursor: pointer;
+}
+
+.anyway-footer .hasadna-logo {
+  width: 20px; 
+  height: 20px; 
+  padding: 3px
+}
+
+.anyway-footer .hasadna-links {
+  border-left: 1px solid #ddd; 
+  padding-left: 8px;
+}
+
+.anyway-footer a {
+  margin-left: 5px;
+}
+
