@@ -8,6 +8,16 @@
     font-size: 35px;
   }
 
+  .sub-title {
+    font-size: 20px;
+    color: blue;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   iframe {
     flex: 1;
     width: 100%;
