@@ -1,0 +1,20 @@
+.subscribe-bar {
+  display: flex;
+  color: black;
+
+  margin-right: 50px;
+
+
+  input {
+    width: 200px;
+    font-size: 16px;
+    font-family: 'Alef', 'sans-serif';
+    margin-right: 10px;
+    margin-left: 30px;
+  }
+
+  button {
+    font-size: 16px;
+    font-family: 'Alef', 'sans-serif';
+  }
+}
