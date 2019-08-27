@@ -53,6 +53,12 @@ class VisionZero extends React.Component {
         <div>
       {content.image ? <img src={`images/${content.image}`} height='250px' alt={content.alt} style={{float:'right', paddingLeft:'10px'}}/> : null}
       <span>{content.body}</span>
+      {content.image2 ? 
+        <figure style={{textAlign: "center"}}>
+        <img src={`images/${content.image2}`} style={{maxWidth: "70%", minWidth: "240px"}} alt={content.alt} />
+      <figcaption>{content.image2Caption ? content.image2Caption : ""}</figcaption>
+      </figure>
+         : null}
       </div>
       </TabPanel>
     })
