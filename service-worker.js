@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/anyway-schools-report/precache-manifest.38da25f6a185b5b68d8cccb1b3743072.js"
+  "/anyway-schools-report/precache-manifest.019d5c39ac843caf6cbeb6517ec7f765.js"
 );
 
 self.addEventListener('message', (event) => {
