@@ -150,6 +150,7 @@ function Select(props) {
     };
 
     const onSuggestionSelected = (event, {suggestion}) => {
+        setInputValue('');
         props.setSelectedId(suggestion.id);
     };
 

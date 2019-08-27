@@ -39,8 +39,8 @@ function Report(props) {
             });
     }
     let title = selectedSchool
-        ? ''
-        : _.get(selectedSchool, 'school_name');
+        ? _.get(selectedSchool, 'school_name')
+        : '';
     return (
         <div className="report" >
             <div className="info">
