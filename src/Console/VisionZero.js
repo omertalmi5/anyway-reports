@@ -65,7 +65,7 @@ class VisionZero extends React.Component {
   render() {
     return (
       <div className="vision-zero">
-        <div className="title">דרכים לשיפור הבטיחות בדרכים על פי חזון אפס /דרור רשף</div>
+        <div className="title">דרכים לשיפור הבטיחות בדרכים על פי חזון אפס / דרור רשף</div>
         <div style={{display: 'flex', flex: '1 auto'}}>
           <MyTabs
           orientation="vertical"
