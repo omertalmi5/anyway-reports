@@ -55,7 +55,7 @@ function App() {
           className={classes.appBar}
         >
           <Toolbar variant="dense">
-            <a href="anyway.co.il"><img src="images/anyway.png" alt="Anyway" className={classes.logo} /></a>
+            <a href="https://anyway.co.il"><img src="images/anyway.png" alt="Anyway" className={classes.logo} /></a>
             <SubscribeBar schoolId={selectedId}/>
           </Toolbar>
         </AppBar>
