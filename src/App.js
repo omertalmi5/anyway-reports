@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import _ from 'lodash';
 import './App.scss';
 import AppBar from "@material-ui/core/AppBar";
 import Report from './Console/Report';
@@ -57,7 +56,7 @@ function App() {
         >
           <Toolbar variant="dense">
             <img src="images/anyway.png" alt="Anyway" className={classes.logo} />
-              <SubscribeBar schoolId={selectedId}/>
+              {/*<SubscribeBar schoolId={selectedId}/>*/}
           </Toolbar>
         </AppBar>
             <Report schools={schoolsMetaData} selectedId={selectedId} setSelectedId={setSelectedId}/>

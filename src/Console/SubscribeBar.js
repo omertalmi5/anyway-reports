@@ -2,32 +2,21 @@ import React, {useState} from 'react';
 import './SubscribeBar.scss'
 import axios from "axios";
 
-function SubscribeBar() {
+function SubscribeBar(props) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
-
-    function subscribe(props) {
+    function subscribe() {
         axios.post(
             "https://anyway.co.il/location-subscription",
             {
                 "address": emailAddress,
                 "fname": firstName,
                 "lname": lastName,
-                "school_id": props.schoolId
+                "school_id": parseInt(props.schoolId)
             },
             {
-                "headers": {
-                    "accept": "*/*",
-                    "accept-language": "en-US,en;q=0.9,he;q=0.8",
-                    "cache-control": "no-cache",
-                    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-                    "pragma": "no-cache",
-                    "sec-fetch-mode": "cors",
-                    "x-requested-with": "XMLHttpRequest"
-                },
                 "method": "POST",
-                "mode": "cors"
             }
         )
             .then(function (response) {
