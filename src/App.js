@@ -55,8 +55,8 @@ function App() {
           className={classes.appBar}
         >
           <Toolbar variant="dense">
-            <img src="images/anyway.png" alt="Anyway" className={classes.logo} />
-              {/*<SubscribeBar schoolId={selectedId}/>*/}
+            <a href="anyway.co.il"><img src="images/anyway.png" alt="Anyway" className={classes.logo} /></a>
+            {/*<SubscribeBar schoolId={selectedId}/>*/}
           </Toolbar>
         </AppBar>
             <Report schools={schoolsMetaData} selectedId={selectedId} setSelectedId={setSelectedId}/>

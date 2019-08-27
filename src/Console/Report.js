@@ -14,7 +14,7 @@ function Report(props) {
     const [selectedSchoolMonthData, setSelectedSchoolMonthData] = React.useState({stats: null});
     const [selectedSchoolGenderData, setSelectedSchoolGenderData] = React.useState({stats: null});
 
-    let selectedSchool = _.find(props.schools, {school_id: props.selectedId}) || {yishuv_name: "רמת גן", school_name: "עירוני ע\"ש בליך", longitude: 34.8180031537827, latitude: 32.0565119400814, school_id: 540211, default: true};
+    let selectedSchool = _.find(props.schools, {school_id: props.selectedId});
     let selectedSchoolName = _.get(selectedSchool, 'school_name', '');
 
     if (props.selectedId !== selectedSchoolInjuredData.id && props.selectedId !== '') {
@@ -38,7 +38,7 @@ function Report(props) {
                 });
             });
     }
-    let title = selectedSchool.default
+    let title = selectedSchool
         ? ''
         : _.get(selectedSchool, 'school_name');
     return (
@@ -58,7 +58,9 @@ function Report(props) {
                     </div>
                 </div>
                 <div className="left">
-                    <Map school={selectedSchool} schoolId={props.selectedId}/>
+
+                    {selectedSchool ? <Map school={selectedSchool} schoolId={props.selectedId}/> :
+                        <div style={{textAlign: 'center', fontSize: 24}}>  ⇒⇒ יש להזין בשורת החיפוש שם ישוב או שם ביה"ס</div>}
                 </div>
             </div>
             <div className="vision-zero-container">

@@ -174,14 +174,45 @@ const getPieOptions = (stats) => {
     };
 };
 
+const getSummary = (injuredStats) => {
+    let stats = [
+        severityStatsByYear(injuredStats, 'light_injured_count', 'פצועים קל', '#ffd82b'),
+        severityStatsByYear(injuredStats, 'severly_injured_count', 'פצועים קשה', '#ff9f1c'),
+        severityStatsByYear(injuredStats, 'killed_count', 'הרוגים', '#d81c32')
+    ];
+    let summary = {};
+    _.forEach(stats, (data) => {
+        const sumInjured =_.sum(data.data);
+        const injuredType = data.name;
+        summary[injuredType] = {sumInjured:sumInjured, color: data.color};
+    })
+    return (
+        <div>
+        <div className="sub-title" style={{fontWeight:'bold'}}>ב-5 השנים האחרונות,
+        {_.map(summary, (val, key) => {return (
+                        <div>
+                            {`${val.sumInjured} `}
+                            <span style={{color:val.color}}>{key}</span>
+                        </div>)})}
+        
+        </div>
+        <div>
+        בקרב הולכי רגל עד גיל 19
+        </div>
+        <br/>
+        </div>
+    )
+};
 
 function Stats(props) {
     let lineOptions = getLineOptions(props.injuredStats);
     let columnOptions = getColumnOptions(props.monthStats);
     let pieOptions = getPieOptions(props.genderedStats);
+    
     return (
         <div className="stats">
             <div className="title">{props.title || ''}</div>
+            {props.injuredStats && getSummary(props.injuredStats)}
             {props.injuredStats && <>
                 <div className="sub-title">נפגעים לפי שנה</div>
                 <Graph options={lineOptions}/>
