@@ -7,7 +7,6 @@ import Map from './Map';
 import Select from './Select';
 import VisionZero from './VisionZero';
 import './Report.scss';
-import Loader from './Loader';
 
 
 function Report(props) {
