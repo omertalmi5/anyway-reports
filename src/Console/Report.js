@@ -11,29 +11,28 @@ import Loader from "./Loader";
 
 
 function Report(props) {
-    const [selectedId, setSelectedId] = React.useState('562');
     const [selectedSchoolInjuredData, setSelectedSchoolInjuredData] = React.useState({id: '', stats: null});
     const [selectedSchoolMonthData, setSelectedSchoolMonthData] = React.useState({stats: null});
     const [selectedSchoolGenderData, setSelectedSchoolGenderData] = React.useState({stats: null});
 
-    let selectedSchool = _.find(props.schools, {school_id: selectedId});
+    let selectedSchool = _.find(props.schools, {school_id: props.selectedId});
     let selectedSchoolName = _.get(selectedSchool, 'school_name', '');
 
-    if (selectedId !== selectedSchoolInjuredData.id && selectedId !== '') {
-        axios.get(`https://anyway.co.il/api/injured-around-schools?school_id=${selectedId}`)
+    if (props.selectedId !== selectedSchoolInjuredData.id && props.selectedId !== '') {
+        axios.get(`https://anyway.co.il/api/injured-around-schools?school_id=${props.selectedId}`)
             .then(function (response) {
                 setSelectedSchoolInjuredData({
                     stats: response.data,
-                    id: selectedId
+                    id: props.selectedId
                 })
             });
-        axios.get(`https://anyway.co.il/api/injured-around-schools-months-graphs-data?school_id=${selectedId}`)
+        axios.get(`https://anyway.co.il/api/injured-around-schools-months-graphs-data?school_id=${props.selectedId}`)
             .then(function (response) {
                 setSelectedSchoolMonthData({
                     stats: response.data
                 });
             });
-        axios.get(`https://anyway.co.il/api/injured-around-schools-sex-graphs-data?school_id=${selectedId}`)
+        axios.get(`https://anyway.co.il/api/injured-around-schools-sex-graphs-data?school_id=${props.selectedId}`)
             .then(function (response) {
                 setSelectedSchoolGenderData({
                     stats: response.data
@@ -48,7 +47,7 @@ function Report(props) {
                     <div className="select-container">
                     <Select schools={props.schools}
                             selectedSchoolValue={selectedSchoolName}
-                            setSelectedId={setSelectedId}/>
+                            setSelectedId={props.setSelectedId}/>
                     </div>
                     <div className="stats-container">
                         {<Stats injuredStats={selectedSchoolInjuredData.stats}
@@ -60,7 +59,7 @@ function Report(props) {
                 <div className="left">
                     { _.isNil(selectedSchool)
                         ? <Loader />
-                        : <Map school={selectedSchool} schoolId={selectedId}/>
+                        : <Map school={selectedSchool} schoolId={props.selectedId}/>
                     }
 
                 </div>

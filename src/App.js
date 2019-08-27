@@ -4,6 +4,7 @@ import './App.scss';
 import AppBar from "@material-ui/core/AppBar";
 import Loader from './Console/Loader';
 import Report from './Console/Report';
+import SubscribeBar from './Console/SubscribeBar';
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -45,6 +46,8 @@ function getData(url, callback) {
 
 function App() {
     const [schoolsMetaData, setSchoolsMetaData] = useState(null);
+    const [selectedId, setSelectedId] = React.useState('562');
+
     useEffect(getData('https://anyway.co.il/api/schools-names', setSchoolsMetaData), []);
     const classes = useStyles();
     return (
@@ -55,11 +58,12 @@ function App() {
         >
           <Toolbar variant="dense">
             <img src="images/anyway.png" alt="Anyway" className={classes.logo} />
+              <SubscribeBar schoolId={selectedId}/>
           </Toolbar>
         </AppBar>
             { _.isNull(schoolsMetaData)
                 ? <Loader />
-                : <Report schools={schoolsMetaData} />
+                : <Report schools={schoolsMetaData} selectedId={selectedId} setSelectedId={setSelectedId}/>
             }
          <AppBar
           position="fixed"
