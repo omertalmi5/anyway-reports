@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.scss';
+
+import _ from 'lodash';
 import AppBar from "@material-ui/core/AppBar";
 import Report from './Console/Report';
 import SubscribeBar from './Console/SubscribeBar';
@@ -44,7 +46,7 @@ function getData(url, callback) {
 
 function App() {
     const [schoolsMetaData, setSchoolsMetaData] = useState(null);
-    const [selectedId, setSelectedId] = React.useState('540211');
+    const [selectedId, setSelectedId] = React.useState(null);
 
     useEffect(getData('https://anyway.co.il/api/schools-names', setSchoolsMetaData), []);
     const classes = useStyles();
@@ -56,7 +58,7 @@ function App() {
         >
           <Toolbar variant="dense">
             <a href="https://anyway.co.il"><img src="images/anyway.png" alt="Anyway" className={classes.logo} /></a>
-            <SubscribeBar schoolId={selectedId}/>
+            {!_.isNull(selectedId) && <SubscribeBar schoolId={selectedId}/>}
           </Toolbar>
         </AppBar>
             <Report schools={schoolsMetaData} selectedId={selectedId} setSelectedId={setSelectedId}/>
