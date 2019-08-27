@@ -184,14 +184,13 @@ const getSummary = (injuredStats) => {
     _.forEach(stats, (data) => {
         const sumInjured =_.sum(data.data);
         const injuredType = data.name;
-        console.log(data);
         summary[injuredType] = {sumInjured:sumInjured, color: data.color};
     })
     return (
         <div className="sub-title" style={{textAlign:'center', fontWeight:'bold'}}>ב-5 השנים האחרונות,
         {_.map(summary, (val, key) => {return (
                         <div>
-                            {`כ-${val.sumInjured} `}
+                            {`${val.sumInjured} `}
                             <span style={{color:val.color}}>{key}</span>
                         </div>)})}
         <br/>
@@ -207,7 +206,7 @@ function Stats(props) {
     return (
         <div className="stats">
             <div className="title">{props.title || ''}</div>
-            {getSummary(props.injuredStats)}
+            {props.injuredStats && getSummary(props.injuredStats)}
             {props.injuredStats && <>
                 <div className="sub-title">נפגעים לפי שנה</div>
                 <Graph options={lineOptions}/>

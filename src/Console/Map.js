@@ -18,7 +18,7 @@ function Map(props) {
 
     return (
         <div className="map">
-            <div className="title">תאונות סביב בית הספר</div>
+            <div className="title">תאונות עם נפגעים (הולכי רגל) בסביבת מוסד הלימודים</div>
             <iframe src={url} title={"the map"}/>
         </div>
     );

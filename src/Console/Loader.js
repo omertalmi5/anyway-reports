@@ -3,7 +3,10 @@ import './Loader.scss'
 
 function Loader() {
     return (
-        <div className="spinner" />
+        <div>
+            <div className="spinner" />
+            <div style={{textAlign:'center'}}>הזן שם ישוב או שם ביה"ס בשורת החיפוש</div>
+        </div>
     );
 }
 

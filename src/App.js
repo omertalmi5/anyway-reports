@@ -54,7 +54,7 @@ function App() {
           className={classes.appBar}
         >
           <Toolbar variant="dense">
-            <img src="images/anyway.png" alt="Anyway" className={classes.logo} />
+            <a href="anyway.co.il"><img src="images/anyway.png" alt="Anyway" className={classes.logo} /></a>
           </Toolbar>
         </AppBar>
             { _.isNull(schoolsMetaData)
