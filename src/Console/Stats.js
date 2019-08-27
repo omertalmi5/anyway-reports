@@ -187,12 +187,18 @@ const getSummary = (injuredStats) => {
         summary[injuredType] = {sumInjured:sumInjured, color: data.color};
     })
     return (
-        <div className="sub-title" style={{textAlign:'center', fontWeight:'bold'}}>ב-5 השנים האחרונות,
+        <div>
+        <div className="sub-title" style={{fontWeight:'bold'}}>ב-5 השנים האחרונות,
         {_.map(summary, (val, key) => {return (
                         <div>
                             {`${val.sumInjured} `}
                             <span style={{color:val.color}}>{key}</span>
                         </div>)})}
+        
+        </div>
+        <div>
+        בקרב הולכי רגל עד גיל 19
+        </div>
         <br/>
         </div>
     )
