@@ -8,6 +8,7 @@ import SubscribeBar from './Console/SubscribeBar';
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -31,6 +32,15 @@ const useStyles = makeStyles(theme => ({
     logo: {
       height: "30px",
       marginRight: "0px",
+      marginTop: "10px"
+    },
+    visionZeroButton: {
+      margin: theme.spacing(1),
+      marginRight: "20px"
+    },
+    visionZeroLink: {
+      color: "#FFFFFF",
+      textDecoration: "none"
     },
     content: {}
   }));
@@ -56,9 +66,15 @@ function App() {
           position="fixed"
           className={classes.appBar}
         >
-          <Toolbar variant="dense">
+          <Toolbar variant="dense">          
             <a href="https://anyway.co.il"><img src="images/anyway.png" alt="Anyway" className={classes.logo} /></a>
             {!_.isNull(selectedId) && <SubscribeBar schoolId={selectedId}/>}
+          <a className={classes.visionZeroLink} href="#visionZeroSection">
+          <Button variant="contained" className={classes.visionZeroButton}>
+            חזון אפס הרוגים
+          </Button>
+          </a>
+          
           </Toolbar>
         </AppBar>
             <Report schools={schoolsMetaData} selectedId={selectedId} setSelectedId={setSelectedId}/>

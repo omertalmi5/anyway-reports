@@ -63,7 +63,7 @@ function Report(props) {
                         <div style={{textAlign: 'center', fontSize: 24}}>  ⇒⇒ יש להזין בשורת החיפוש שם ישוב או שם ביה"ס</div>}
                 </div>
             </div>
-            <div className="vision-zero-container">
+            <div className="vision-zero-container" id="visionZeroSection">
                 <VisionZero />
             </div>
             <div className="footer">
