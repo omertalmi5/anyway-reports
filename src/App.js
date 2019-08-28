@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import './App.scss';
 
-import _ from 'lodash';
 import AppBar from "@material-ui/core/AppBar";
 import Report from './Console/Report';
-import SubscribeBar from './Console/SubscribeBar';
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -68,7 +66,7 @@ function App() {
         >
           <Toolbar variant="dense">          
             <a href="https://anyway.co.il"><img src="images/anyway.png" alt="Anyway" className={classes.logo} /></a>
-            {!_.isNull(selectedId) && <SubscribeBar schoolId={selectedId}/>}
+            {/* !_.isNull(selectedId) && <SubscribeBar schoolId={selectedId}/> */}
           <a className={classes.visionZeroLink} href="#visionZeroSection">
           <Button variant="contained" className={classes.visionZeroButton}>
             חזון אפס הרוגים
