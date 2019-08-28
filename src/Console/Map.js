@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-
+import _ from 'lodash';
+import SubscribeBar from './SubscribeBar';
 import './Map.scss';
 
 function getLink(school, simpleView) {
@@ -27,6 +28,7 @@ function Map(props) {
             <div className="title">תאונות עם נפגעים (הולכי רגל) בסביבת מוסד הלימודים</div>
             <a className="sub-title" href={getLink(props.school, false)} target="blank">{changerText}</a>
             <iframe src={url} title={"the map"}/>
+            {!_.isNull(props.schoolId) && <SubscribeBar schoolId={props.schoolId}/>}
         </div>
     );
 }
