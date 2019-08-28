@@ -16,17 +16,18 @@ function getLink(school, simpleView) {
 
 
 function Map(props) {
-    const [simpleView, setSimpleView] = useState(true);
+    const [simpleView] = useState(true);
 
 
     let url = getLink(props.school, simpleView);
     let changerText = simpleView
-        ? 'לצפיה במפה המלאה עם אפשרויות חיפוש מתקדמות לחצו כאן'
-        : 'לצפיה במפה פשוטה בלבד לחצו כאן';
+        ? 'לצפיה במפה המלאה עם אפשרויות חיפוש מתקדמות'
+        : 'לצפיה במפה פשוטה בלבד';
     return (
         <div className="map">
             <div className="title">תאונות עם נפגעים (הולכי רגל) בסביבת מוסד הלימודים</div>
-            <a className="sub-title" href={getLink(props.school, false)} target="blank">{changerText}</a>
+            <span className="sub-title">{changerText} <a className="sub-title-link" href={getLink(props.school, false)} target="blank">לחצו כאן</a></span>
+            
             <iframe src={url} title={"the map"}/>
             {!_.isNull(props.schoolId) && <SubscribeBar schoolId={props.schoolId}/>}
         </div>

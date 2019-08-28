@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import './App.scss';
 
-import _ from 'lodash';
 import AppBar from "@material-ui/core/AppBar";
 import Report from './Console/Report';
-import SubscribeBar from './Console/SubscribeBar';
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
