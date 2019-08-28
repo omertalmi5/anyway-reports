@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/anyway-schools-report/static/css/main.444b523a.chunk.css",
-    "main.js": "/anyway-schools-report/static/js/main.bc333400.chunk.js",
-    "main.js.map": "/anyway-schools-report/static/js/main.bc333400.chunk.js.map",
+    "main.css": "/anyway-schools-report/static/css/main.e1d13a0d.chunk.css",
+    "main.js": "/anyway-schools-report/static/js/main.a21356b8.chunk.js",
+    "main.js.map": "/anyway-schools-report/static/js/main.a21356b8.chunk.js.map",
     "runtime~main.js": "/anyway-schools-report/static/js/runtime~main.c5ff331e.js",
     "runtime~main.js.map": "/anyway-schools-report/static/js/runtime~main.c5ff331e.js.map",
-    "static/js/2.b5d90f8f.chunk.js": "/anyway-schools-report/static/js/2.b5d90f8f.chunk.js",
-    "static/js/2.b5d90f8f.chunk.js.map": "/anyway-schools-report/static/js/2.b5d90f8f.chunk.js.map",
+    "static/js/2.12a4d1fd.chunk.js": "/anyway-schools-report/static/js/2.12a4d1fd.chunk.js",
+    "static/js/2.12a4d1fd.chunk.js.map": "/anyway-schools-report/static/js/2.12a4d1fd.chunk.js.map",
     "index.html": "/anyway-schools-report/index.html",
-    "precache-manifest.019d5c39ac843caf6cbeb6517ec7f765.js": "/anyway-schools-report/precache-manifest.019d5c39ac843caf6cbeb6517ec7f765.js",
+    "precache-manifest.46868edf28ad63b6818a52785085454c.js": "/anyway-schools-report/precache-manifest.46868edf28ad63b6818a52785085454c.js",
     "service-worker.js": "/anyway-schools-report/service-worker.js",
-    "static/css/main.444b523a.chunk.css.map": "/anyway-schools-report/static/css/main.444b523a.chunk.css.map"
+    "static/css/main.e1d13a0d.chunk.css.map": "/anyway-schools-report/static/css/main.e1d13a0d.chunk.css.map"
   }
 }
