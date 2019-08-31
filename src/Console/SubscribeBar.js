@@ -44,7 +44,7 @@ function SubscribeBar(props) {
                 <input value={emailAddress} onChange={(event) => setEmailAddress(event.target.value)} disabled={subscribed}/>
             </div>
             <div className="header-item">
-                <button onClick={subscribe} disabled={subscribed}>הרשם לעדכונים</button>
+                <button onClick={subscribe} disabled={subscribed}>הרשמו לעדכונים</button>
             </div>
             {subscribed && <div className="subscribe-header">ההרשמה נקלטה בהצלחה!</div>}
         </div>
