@@ -7,7 +7,8 @@ import Graph from './Graph';
 
 
 const getFromStatsByYear = (stats, year, severity) => {
-    let yearRecord = _.find(stats, {accident_year: year});
+    let yearRecord = _.find(stats, {accident_year: year}) || _.find(stats, {accident_year: _.toString(year)});
+    console.log(year, yearRecord)
     if (_.isUndefined(yearRecord)) {
         return 0;
     }
@@ -19,11 +20,11 @@ let severityStatsByYear = function (stats, severity, name, color) {
         name,
         color,
         data: [
-            getFromStatsByYear(stats, '2014', severity),
-            getFromStatsByYear(stats, '2015', severity),
-            getFromStatsByYear(stats, '2016', severity),
-            getFromStatsByYear(stats, '2017', severity),
-            getFromStatsByYear(stats, '2018', severity)
+            getFromStatsByYear(stats, 2014, severity),
+            getFromStatsByYear(stats, 2015, severity),
+            getFromStatsByYear(stats, 2016, severity),
+            getFromStatsByYear(stats, 2017, severity),
+            getFromStatsByYear(stats, 2018, severity)
         ],
         key: `${name}-${severity}`
     };
@@ -194,7 +195,7 @@ const getSummary = (injuredStats) => {
                             {`${val.sumInjured} `}
                             <span style={{color:val.color}}>{key}</span>
                         </div>)})}
-        
+
         </div>
         <div>
         בקרב הולכי רגל עד גיל 19
@@ -208,7 +209,7 @@ function Stats(props) {
     let lineOptions = getLineOptions(props.injuredStats);
     let columnOptions = getColumnOptions(props.monthStats);
     let pieOptions = getPieOptions(props.genderedStats);
-    
+
     return (
         <div className="stats">
             <div className="title">{props.title || ''}</div>
