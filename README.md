@@ -15,4 +15,5 @@ To deploy:
 
 ```
 yarn build
+yarn run deploy
 ```
