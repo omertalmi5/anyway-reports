@@ -10,4 +10,9 @@ To run:
 yarn start
 ```
 
+To deploy:
 
+
+```
+yarn build
+```
