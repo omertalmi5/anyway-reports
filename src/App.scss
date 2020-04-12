@@ -1,14 +1,14 @@
 html {
-  font-family:'Alef','sans-serif';
+  font-family: "Alef", "sans-serif";
 }
 
 body {
+  direction: "rtl";
   margin: 0 30px;
 }
 
-
 .MuiTypography-root.MuiTypography-body1 {
-  font-family:'Alef','sans-serif';
+  font-family: "Alef", "sans-serif";
 }
 
 .anyway-footer {
@@ -17,13 +17,13 @@ body {
 }
 
 .anyway-footer .hasadna-logo {
-  width: 20px; 
-  height: 20px; 
-  padding: 3px
+  width: 20px;
+  height: 20px;
+  padding: 3px;
 }
 
 .anyway-footer .hasadna-links {
-  border-left: 1px solid #ddd; 
+  border-left: 1px solid #ddd;
   padding-left: 8px;
 }
 
@@ -31,3 +31,14 @@ body {
   margin-left: 5px;
 }
 
+.vision-zero-container {
+  display: block;
+  margin-top: 100px;
+}
+
+.report-select {
+  height: 40px;
+  .MuiInput-formControl {
+    margin-top: 8px;
+  }
+}
