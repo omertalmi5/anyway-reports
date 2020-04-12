@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/anyway-schools-report/static/css/main.3c4efd4b.chunk.css",
-    "main.js": "/anyway-schools-report/static/js/main.d48a1446.chunk.js",
-    "main.js.map": "/anyway-schools-report/static/js/main.d48a1446.chunk.js.map",
-    "runtime~main.js": "/anyway-schools-report/static/js/runtime~main.c5ff331e.js",
-    "runtime~main.js.map": "/anyway-schools-report/static/js/runtime~main.c5ff331e.js.map",
-    "static/js/2.74b34121.chunk.js": "/anyway-schools-report/static/js/2.74b34121.chunk.js",
-    "static/js/2.74b34121.chunk.js.map": "/anyway-schools-report/static/js/2.74b34121.chunk.js.map",
-    "index.html": "/anyway-schools-report/index.html",
-    "precache-manifest.ac910d0306bed136414196c4932ce663.js": "/anyway-schools-report/precache-manifest.ac910d0306bed136414196c4932ce663.js",
-    "service-worker.js": "/anyway-schools-report/service-worker.js",
-    "static/css/main.3c4efd4b.chunk.css.map": "/anyway-schools-report/static/css/main.3c4efd4b.chunk.css.map"
+    "main.css": "/anyway-reports/static/css/main.7f24ec72.chunk.css",
+    "main.js": "/anyway-reports/static/js/main.48356a6e.chunk.js",
+    "main.js.map": "/anyway-reports/static/js/main.48356a6e.chunk.js.map",
+    "runtime~main.js": "/anyway-reports/static/js/runtime~main.bb4982e5.js",
+    "runtime~main.js.map": "/anyway-reports/static/js/runtime~main.bb4982e5.js.map",
+    "static/js/2.e341883d.chunk.js": "/anyway-reports/static/js/2.e341883d.chunk.js",
+    "static/js/2.e341883d.chunk.js.map": "/anyway-reports/static/js/2.e341883d.chunk.js.map",
+    "index.html": "/anyway-reports/index.html",
+    "precache-manifest.073e47f723288c27c10269937d943ee5.js": "/anyway-reports/precache-manifest.073e47f723288c27c10269937d943ee5.js",
+    "service-worker.js": "/anyway-reports/service-worker.js",
+    "static/css/main.7f24ec72.chunk.css.map": "/anyway-reports/static/css/main.7f24ec72.chunk.css.map"
   }
 }
