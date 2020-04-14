@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-
+import {
+  Switch,
+  Route,
+} from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import "./App.scss";
 
 import AppBar from "@material-ui/core/AppBar";
@@ -15,6 +19,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import EmbeddedReport from "./Console/EmbeddedReport";
 import VisionZero from "./Console/VisionZero";
 import _ from "lodash";
+
+const DEFAULT_REPORT_TYPE = "accidents_around_schools";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -65,13 +71,12 @@ function getData(url, callback) {
 }
 
 function App() {
+  let history = useHistory();
+  const location = useLocation();
   const [schoolsMetaData, setSchoolsMetaData] = useState(null);
   const [selectedId, setSelectedId] = React.useState(null);
 
-  const [embeddedReports, setEmbeddedReports] = React.useState(null);
-  const [selectedEmbeddedReport, setSelectedEmbeddedReport] = React.useState(
-    null
-  );
+  const [embeddedReports, setEmbeddedReports] = React.useState([]);  
   const [optionItems, setOptionItems] = React.useState(null);
 
   useEffect(
@@ -85,7 +90,7 @@ function App() {
   );
 
   useEffect(() => {
-    if (embeddedReports) {
+    if (embeddedReports.length > 0) {
       setOptionItems(
         embeddedReports.map((report) => (
           <MenuItem key={report.id} value={report.report_name_english}>
@@ -100,7 +105,11 @@ function App() {
     const selectedReport = _.find(embeddedReports, {
       report_name_english: event.target.value,
     });
-    setSelectedEmbeddedReport(selectedReport);
+    if (!selectedReport) {
+      history.push('/');
+    }else {
+      history.push(`/${selectedReport.report_name_english}`);
+    }
   };
 
   const classes = useStyles();
@@ -127,9 +136,9 @@ function App() {
                 variant="outlined"
                 className="report-select"
                 value={
-                  selectedEmbeddedReport
-                    ? selectedEmbeddedReport.report_name_english
-                    : "0"
+                  (location.pathname === '/' || embeddedReports.length === 0) ? 
+                    "0"
+                    : location.pathname.substr(1)
                 }
                 onChange={(e) => onOptionChange(e)}
               >
@@ -142,18 +151,19 @@ function App() {
           </div>
         </Toolbar>
       </AppBar>
-
-      {!selectedEmbeddedReport ||
-      selectedEmbeddedReport.report_name_english ===
-        "accidents_around_schools" ? (
-        <Report
-          schools={schoolsMetaData}
-          selectedId={selectedId}
-          setSelectedId={setSelectedId}
-        />
-      ) : (
-        <EmbeddedReport report={selectedEmbeddedReport} />
-      )}
+      <Switch>   
+        {embeddedReports.map((report) => (
+           <Route key={report.report_name_english} path={`/${report.report_name_english}`}>
+           {report.report_name_english === DEFAULT_REPORT_TYPE ? <Report
+                 path={`/${report.report_name_english}`}
+                 schools={schoolsMetaData}
+                 selectedId={selectedId}
+                 setSelectedId={setSelectedId}
+               /> : <EmbeddedReport report={report} />}
+         </Route>     
+        ))}
+      </Switch>         
+          
       <div className="vision-zero-container" id="visionZeroSection">
         <VisionZero />
       </div>
