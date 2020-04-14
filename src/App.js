@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Switch,
-  Route,
-} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { useHistory, useLocation } from "react-router-dom";
 import "./App.scss";
 
@@ -71,7 +68,7 @@ function getData(url, callback) {
 }
 
 function App() {
-  let history = useHistory();
+  const history = useHistory();
   const location = useLocation();
   const [schoolsMetaData, setSchoolsMetaData] = useState(null);
   const [selectedId, setSelectedId] = React.useState(null);
