@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import EmbeddedReport from "./Console/EmbeddedReport";
 import VisionZero from "./Console/VisionZero";
@@ -70,7 +71,7 @@ function getData(url, callback) {
 function App() {
   const history = useHistory();
   const location = useLocation();
-  const [schoolsMetaData, setSchoolsMetaData] = useState(null);
+  const [schoolsMetaData, setSchoolsMetaData] = useState([]);
   const [selectedId, setSelectedId] = React.useState(null);
 
   const [embeddedReports, setEmbeddedReports] = React.useState([]);  
@@ -128,7 +129,8 @@ function App() {
             </Button>
           </a>
           <div>
-            <FormControl variant="outlined" className={classes.formControl}>
+            {(schoolsMetaData.length === 0 || embeddedReports.length === 0) && <CircularProgress />}
+            {(schoolsMetaData.length > 0 && embeddedReports.length > 0) && <FormControl variant="outlined" className={classes.formControl}>
               <Select
                 variant="outlined"
                 className="report-select"
@@ -144,7 +146,7 @@ function App() {
                 </MenuItem>
                 {optionItems}
               </Select>
-            </FormControl>
+            </FormControl>}
           </div>
         </Toolbar>
       </AppBar>
