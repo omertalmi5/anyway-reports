@@ -49,7 +49,7 @@ function Report(props) {
       });
     axios
       .get(
-        `https://anyway.co.il/api/injured-around-schools-sex-graphs-data?school_id=${props.selectedId}`
+        `https://www.anyway.co.il/api/injured-around-schools-sex-graphs-data?school_id=${props.selectedId}`
       )
       .then(function (response) {
         setSelectedSchoolGenderData({
