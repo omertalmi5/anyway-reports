@@ -78,12 +78,12 @@ function App() {
   const [optionItems, setOptionItems] = React.useState(null);
 
   useEffect(
-    getData("https://anyway.co.il/api/schools-names", setSchoolsMetaData),
+    getData("https://www.anyway.co.il/api/schools-names", setSchoolsMetaData),
     []
   );
 
   useEffect(
-    getData(`https://anyway.co.il/api/embedded-reports`, setEmbeddedReports),
+    getData(`https://www.anyway.co.il/api/embedded-reports`, setEmbeddedReports),
     []
   );
 
