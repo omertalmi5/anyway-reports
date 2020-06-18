@@ -10,10 +10,13 @@ To run:
 yarn start
 ```
 
-To deploy:
+To build:
 
 
 ```
 yarn build
-yarn run deploy
 ```
+
+To deploy:
+
+Merge your branch into master - deployment is automatic in netlify
