@@ -49,7 +49,7 @@ jobs:
           #export GIT_SSH_COMMAND="ssh -i `pwd`/hasadna_k8s_deploy_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&\
           git clone https://github.com/mickeyrouash/hasadna-k8s.git &&\
           cd hasadna-k8s &&\
-          python update_yaml.py '{"anyway":{"anywayReportsImage":"'${ANYWAY_REPORTS_IMAGE}''"}}' ./values.auto-updated.yaml &&\
+          python update_yaml.py '{"anyway":{"anywayReportsImage":"'${ANYWAY_REPORTS_IMAGE}'"}}'  ./values.auto-updated.yaml &&\
           cat  ./values.auto-updated.yaml
           #git config --global user.name "Anyway CI" &&\
           #git config --global user.email "anyway-ci@localhost" &&\
