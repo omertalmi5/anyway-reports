@@ -44,10 +44,10 @@ jobs:
         echo ANYWAY_REPORTS_IMAGE=$ANYWAY_REPORTS_IMAGE &&\
         if ! git log -1 --pretty=format:"%s" | grep -- --no-deploy; then
           cd `mktemp -d` &&\
-          #echo "${HASADNA_K8S_DEPLOY_KEY}" > hasadna_k8s_deploy_key &&\
-          #chmod 400 hasadna_k8s_deploy_key &&\
-          #export GIT_SSH_COMMAND="ssh -i `pwd`/hasadna_k8s_deploy_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&\
-          git clone https://github.com/mickeyrouash/hasadna-k8s.git &&\
+          echo "${HASADNA_K8S_DEPLOY_KEY}" > hasadna_k8s_deploy_key &&\
+          chmod 400 hasadna_k8s_deploy_key &&\
+          export GIT_SSH_COMMAND="ssh -i `pwd`/hasadna_k8s_deploy_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&\
+          git clone git@github.com:hasadna/hasadna-k8s.git &&\
           cd hasadna-k8s &&\
           python update_yaml.py '{"anyway":{"anywayReportsImage":"'${ANYWAY_REPORTS_IMAGE}'"}}'  ./values.auto-updated.yaml &&\
           cat  ./values.auto-updated.yaml
