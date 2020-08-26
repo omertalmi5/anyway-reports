@@ -12,7 +12,6 @@ yarn start
 
 To deploy:
 
-
 ```
 yarn build
 yarn run deploy
