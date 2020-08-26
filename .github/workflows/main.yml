@@ -1,0 +1,58 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build Docker
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+env:
+  DOCKER_REPOSITORY_ANYWAY_REPORTS: "anywayteam/anyway-reports"  
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  Build-anyway-reports:
+    #if: github.repository == 'hasadna/anyway-reports'
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build and push anyway Docker image
+      uses: docker/build-push-action@v1.0.1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: ${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}
+        tag_with_ref: true
+        tag_with_sha: true
+        cache_from: ${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}:master 
+  
+  deploy:
+    #if: github.repository == 'hasadna/anyway' && github.ref == 'refs/heads/master'
+    needs:
+      - Build-anyway-reports
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - env:
+        DOCKER_REPOSITORY_ANYWAY_REPORTS: ${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}
+        HASADNA_K8S_DEPLOY_KEY: ${{ secrets.HASADNA_K8S_DEPLOY_KEY }}
+      run: |
+        SHA_TAG=sha-`git rev-parse --short $GITHUB_SHA` &&\
+        echo SHA_TAG=$SHA_TAG &&\
+        ANYWAY_REPORTS_IMAGE="${DOCKER_REPOSITORY_ANYWAY_REPORTS}:${SHA_TAG}" &&\
+        echo ANYWAY_REPORTS_IMAGE=$ANYWAY_REPORTS_IMAGE &&\
+        if ! git log -1 --pretty=format:"%s" | grep -- --no-deploy; then
+          cd `mktemp -d` &&\
+          echo "${HASADNA_K8S_DEPLOY_KEY}" > hasadna_k8s_deploy_key &&\
+          chmod 400 hasadna_k8s_deploy_key &&\
+          export GIT_SSH_COMMAND="ssh -i `pwd`/hasadna_k8s_deploy_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&\
+          git clone git@github.com:hasadna/hasadna-k8s.git &&\
+          cd hasadna-k8s &&\
+          python update_yaml.py '{"anyway":{"anywayReportsImage":"'${ANYWAY_REPORTS_IMAGE}'"}}'  ./values.auto-updated.yaml &&\
+          cat  ./values.auto-updated.yaml
+          git config --global user.name "Anyway CI" &&\
+          git config --global user.email "anyway-ci@localhost" &&\
+          git add ./values.auto-updated.yaml && git commit -m "automatic update of anyway-report docker image" &&\
+          git push origin master
+        fi          
