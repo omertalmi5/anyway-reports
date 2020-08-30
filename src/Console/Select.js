@@ -170,7 +170,7 @@ function Select(props) {
             inputProps={{
                 classes,
                 id: 'react-autosuggest-simple',
-                placeholder: 'חפש על פי שם ישוב או שם ביה״ס',
+                placeholder: 'חפש על פי שם ישוב או שם מוסד חינוך',
                 value: inputValue,
                 onChange: handleChange,
                 direction: 'rtl'
