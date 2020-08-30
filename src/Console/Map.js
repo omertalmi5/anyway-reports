@@ -25,7 +25,7 @@ function Map(props) {
         : 'לצפיה במפה פשוטה בלבד';
     return (
         <div className="map">
-            <div className="title">תאונות עם נפגעים (הולכי רגל) בסביבת מוסד הלימודים</div>
+            <div className="title">תאונות עם נפגעים (הולכי רגל, רוכבי אופניים וקורקינט) בסביבת מוסד הלימודים</div>
             <span className="sub-title">{changerText} <a className="sub-title-link" href={getLink(props.school, false)} target="blank">לחצו כאן</a></span>
             
             <iframe src={url} title={"the map"}/>
