@@ -4,7 +4,7 @@ on:
   push:
     branches: [ move-to-github-packages ]
 env:
-  DOCKER_REPOSITORY_ANYWAY_REPORTS: "omertalmi5/anyway-reports"
+  DOCKER_REPOSITORY_ANYWAY_REPORTS: "${{ github.repository }}/anyway-reports"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
