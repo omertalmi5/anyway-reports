@@ -6,10 +6,8 @@ on:
 env:
   DOCKER_REPOSITORY_ANYWAY_REPORTS: "${{ github.repository }}/anyway-reports"
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   Build-anyway-reports:
-    #if: github.repository == 'hasadna/anyway-reports'
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -26,7 +24,6 @@ jobs:
         cache_from: ${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}:master
   
   deploy:
-    #if: github.repository == 'hasadna/anyway' && github.ref == 'refs/heads/master'
     needs:
       - Build-anyway-reports
     runs-on: ubuntu-18.04
