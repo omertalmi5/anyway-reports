@@ -33,7 +33,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - env:
-        DOCKER_REPOSITORY_ANYWAY_REPORTS: ${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}
+        DOCKER_REPOSITORY_ANYWAY_REPORTS: ${{ env.SERVER }}/${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}
         HASADNA_K8S_DEPLOY_KEY: ${{ secrets.HASADNA_K8S_DEPLOY_KEY }}
       run: |
         SHA_TAG=sha-`git rev-parse --short $GITHUB_SHA` &&\
