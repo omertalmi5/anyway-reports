@@ -1,8 +1,8 @@
 name: Build Docker
- 
+
 on:
   push:
-    branches: [ master ]
+    branches: [ move-to-github-packages ]
 env:
   DOCKER_REPOSITORY_ANYWAY_REPORTS: "anywayteam/anyway-reports"  
 
