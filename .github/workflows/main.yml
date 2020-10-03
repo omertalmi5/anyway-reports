@@ -2,7 +2,7 @@ name: Build Docker
 
 on:
   push:
-    branches: [ move-to-github-packages ]
+    branches: [ master ]
 env:
   DOCKER_REPOSITORY_ANYWAY_REPORTS: "${{ github.repository }}/anyway-reports"
 
