@@ -16,10 +16,11 @@ jobs:
     - name: Build and push anyway Docker image
       uses: docker/build-push-action@v1.1.1
       with:
+        name: ${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        repository: ${{ env.DOCKER_REPOSITORY_ANYWAY }}
+        repository: ${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}
         tag_with_ref: true
         tag_with_sha: true
         cache_from: ${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}:master
