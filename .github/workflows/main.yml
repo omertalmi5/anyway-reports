@@ -5,6 +5,7 @@ on:
     branches: [ master ]
 env:
   DOCKER_REPOSITORY_ANYWAY_REPORTS: "${{ github.repository }}/anyway-reports"
+  REGISTRY_URL: "docker.pkg.github.com"
 
 jobs:
   Build-anyway-reports:
@@ -17,7 +18,7 @@ jobs:
         name: ${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
+        registry: ${{ env.REGISTRY_URL }}
         repository: ${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}
         tag_with_ref: true
         tag_with_sha: true
@@ -30,7 +31,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - env:
-        DOCKER_REPOSITORY_ANYWAY_REPORTS: ${{ env.SERVER }}/${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}
+        DOCKER_REPOSITORY_ANYWAY_REPORTS: ${{ env.REGISTRY_URL }}/${{ env.DOCKER_REPOSITORY_ANYWAY_REPORTS }}
         HASADNA_K8S_DEPLOY_KEY: ${{ secrets.HASADNA_K8S_DEPLOY_KEY }}
       run: |
         SHA_TAG=sha-`git rev-parse --short $GITHUB_SHA` &&\
